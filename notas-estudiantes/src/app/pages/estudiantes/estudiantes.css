@@ -1,61 +1,25 @@
 .contenedor {
-  max-width: 1000px;
-  margin: 40px auto;
-  padding: 25px;
-  font-family: Arial, sans-serif;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px #00000012;
+  max-width: 800px;
+  margin: 0 auto;
 }
-
-h1 {
-  color: #1e3a8a;
-  text-align: center;
-}
-
-.subtitulo {
-  color: #64748b;
-  text-align: center;
-  margin-bottom: 25px;
-}
-
-.tabla-contenedor {
-  overflow-x: auto;
-}
-
-table {
+.tabla-estudiantes {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 15px;
 }
-
-th, td {
-  padding: 14px;
+.tabla-estudiantes th, .tabla-estudiantes td {
+  border: 1px solid #ddd;
+  padding: 10px;
   text-align: center;
-  border-bottom: 1px solid #e2e8f0;
 }
-
-th {
-  color: white;
-  background: #1e40af;
+.tabla-estudiantes th {
+  background-color: #f4f6f9;
 }
-
-tbody tr:hover {
-  background: #eff6ff;
-}
-
 .btn-detalle {
-  display: inline-block;
-  padding: 9px 15px;
+  padding: 6px 12px;
+  background-color: #007bff;
   color: white;
-  background: #2563eb;
-  border-radius: 6px;
-  text-decoration: none;
-}
-
-.btn-detalle:hover {
-  background: #1d4ed8;
-}
-
-.error {
-  color: #b91c1c;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }

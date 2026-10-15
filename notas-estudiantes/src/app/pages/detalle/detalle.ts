@@ -1,10 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import {
-  DetalleEstudiante,
-  EstudianteService
-} from '../../services/estudiante';
+import { EstudianteService, Estudiante } from '../../services/estudiante';
 
 @Component({
   selector: 'app-detalle',
@@ -13,40 +10,27 @@ import {
   templateUrl: './detalle.html',
   styleUrl: './detalle.css'
 })
-export class Detalle implements OnInit {
-  estudiante?: DetalleEstudiante;
-  cargando = true;
-  error = '';
+export class DetalleComponent implements OnInit {
+  estudiante?: Estudiante;
+  cargando: boolean = true;
 
   constructor(
     private route: ActivatedRoute,
-    private servicio: EstudianteService
+    private estudianteService: EstudianteService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
-    const id = Number(
-      this.route.snapshot.paramMap.get('id')
-    );
-
-    if (!Number.isInteger(id) || id <= 0) {
-      this.error = 'Identificador no válido.';
-      this.cargando = false;
-      return;
-    }
-
-    this.servicio.obtenerDetalle(id).subscribe({
-      next: (datos) => {
-        this.estudiante = datos;
-
-        if (!datos) {
-          this.error = 'No se encontró al estudiante.';
-        }
-
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.estudianteService.getEstudiantePorId(id).subscribe({
+      next: (encontrado) => {
+        this.estudiante = encontrado;
         this.cargando = false;
+        this.cdr.markForCheck();
       },
       error: () => {
-        this.error = 'No se pudo cargar el detalle.';
         this.cargando = false;
+        this.cdr.markForCheck();
       }
     });
   }

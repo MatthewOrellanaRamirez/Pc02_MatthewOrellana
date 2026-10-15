@@ -1,61 +1,29 @@
+<div class="contenedor-detalle">
+  <div *ngIf="cargando">Cargando información del estudiante...</div>
 
-<div class="contenedor">
-  <h1>Detalle académico</h1>
+  <div class="tarjeta" *ngIf="!cargando && estudiante">
+    <h2>Información Académica del Estudiante</h2>
+    <p><strong>Nombre:</strong> {{ estudiante.nombre }}</p>
+    <p><strong>Suma de Notas:</strong> {{ estudiante.suma }}</p>
+    <p><strong>Promedio:</strong> {{ estudiante.promedio }}</p>
+    <p>
+      <strong>Estado Académico:</strong> 
+      <span [style.color]="estudiante.estado === 'Aprobado' ? 'green' : 'red'">
+        {{ estudiante.estado }}
+      </span>
+    </p>
+    <p><strong>Observación:</strong> {{ estudiante.observacion }}</p>
 
-  <p *ngIf="cargando">Cargando detalle...</p>
-
-  <p *ngIf="error" class="error">
-    {{ error }}
-  </p>
-
-  <div *ngIf="estudiante as e" class="tarjeta">
-    <h2>{{ e.nombre }}</h2>
-
-    <div class="dato">
-      <span>Nota 1</span>
-      <strong>{{ e.nota1 }}</strong>
-    </div>
-
-    <div class="dato">
-      <span>Nota 2</span>
-      <strong>{{ e.nota2 }}</strong>
-    </div>
-
-    <div class="dato">
-      <span>Nota 3</span>
-      <strong>{{ e.nota3 }}</strong>
-    </div>
-
-    <div class="dato">
-      <span>Suma de notas</span>
-      <strong>{{ e.suma }}</strong>
-    </div>
-
-    <div class="dato">
-      <span>Promedio</span>
-      <strong>{{ e.promedio | number:'1.2-2' }}</strong>
-    </div>
-
-    <div class="dato">
-      <span>Estado académico</span>
-      <strong
-        [class.aprobado]="e.estado === 'Aprobado'"
-        [class.desaprobado]="e.estado === 'Desaprobado'">
-        {{ e.estado }}
-      </strong>
-    </div>
-
-    <div class="dato">
-      <span>Observación</span>
-      <strong
-        [class.excelente]="e.observacion === 'Excelente'"
-        [class.riesgo]="e.observacion === 'En riesgo'">
-        {{ e.observacion }}
-      </strong>
-    </div>
+    <br />
+    <a routerLink="/estudiantes">
+      <button class="btn-volver">Volver al Reporte</button>
+    </a>
   </div>
 
-  <a routerLink="/estudiantes" class="btn-volver">
-    Volver al reporte
-  </a>
+  <div *ngIf="!cargando && !estudiante">
+    <p>No se encontró el registro del estudiante solicitado.</p>
+    <a routerLink="/estudiantes">
+      <button class="btn-volver">Volver al Reporte</button>
+    </a>
+  </div>
 </div>

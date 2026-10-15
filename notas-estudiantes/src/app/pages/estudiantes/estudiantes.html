@@ -1,0 +1,38 @@
+
+<div class="contenedor">
+  <h1>Reporte de estudiantes</h1>
+  <p class="subtitulo">Listado de notas académicas</p>
+
+  <p *ngIf="cargando">Cargando estudiantes...</p>
+  <p *ngIf="error" class="error">{{ error }}</p>
+
+  <div class="tabla-contenedor" *ngIf="!cargando && !error">
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Nota 1</th>
+          <th>Nota 2</th>
+          <th>Nota 3</th>
+          <th>Detalle</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let estudiante of estudiantes">
+          <td>{{ estudiante.nombre }}</td>
+          <td>{{ estudiante.nota1 }}</td>
+          <td>{{ estudiante.nota2 }}</td>
+          <td>{{ estudiante.nota3 }}</td>
+          <td>
+            <a
+              class="btn-detalle"
+              [routerLink]="['/detalle', estudiante.id]">
+              Detalle
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

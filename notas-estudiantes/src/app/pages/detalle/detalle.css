@@ -1,0 +1,51 @@
+.contenedor {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 25px;
+  font-family: Arial, sans-serif;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px #00000012;
+}
+
+h1 {
+  color: #1e3a8a;
+  text-align: center;
+}
+
+h2 {
+  color: #334155;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.dato {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px;
+  margin-bottom: 10px;
+  background: #f1f5f9;
+  border-radius: 7px;
+}
+
+.aprobado,
+.excelente {
+  color: #15803d;
+}
+
+.desaprobado,
+.riesgo,
+.error {
+  color: #b91c1c;
+}
+
+.btn-volver {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 12px 18px;
+  color: white;
+  background: #2563eb;
+  border-radius: 6px;
+  text-decoration: none;
+}
